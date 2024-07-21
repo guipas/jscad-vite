@@ -9,7 +9,7 @@ export interface JscadGeometryOptions {
 }
 
 export class JscadGeometry extends BufferGeometry {
-  debug: boolean;
+  debug = false;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   log(...args: any[]) {
@@ -18,13 +18,10 @@ export class JscadGeometry extends BufferGeometry {
     }
   }
 
-  constructor(
-    jscadGeometry: Geom3,
-    options: JscadGeometryOptions = { doTransforms: true, debug: false }
-  ) {
+  constructor(jscadGeometry: Geom3) {
     super();
     // console.log("jscadGeometry", jscadGeometry);
-    this.debug = options.debug || false;
+    // this.debug = options.debug || false;
 
     this.log("polygons", jscadGeometry.polygons.length);
 
@@ -41,11 +38,11 @@ export class JscadGeometry extends BufferGeometry {
 
     this.setAttribute("position", new BufferAttribute(vertices, 3));
 
-    if (jscadGeometry.transforms && options.doTransforms) {
-      const transforms = new Matrix4();
-      transforms.set(...jscadGeometry.transforms).transpose();
-      this.applyMatrix4(transforms);
-    }
+    // if (jscadGeometry.transforms && options.doTransforms) {
+    const transforms = new Matrix4();
+    transforms.set(...jscadGeometry.transforms).transpose();
+    this.applyMatrix4(transforms);
+    // }
     this.computeVertexNormals();
   }
 

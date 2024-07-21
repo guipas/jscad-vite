@@ -7,7 +7,7 @@ export interface JSCadObjectProps {
 }
 
 export const JSCadObject = ({ jsCadGeometry }: JSCadObjectProps) => {
-  const geometry = new JscadGeometry(jsCadGeometry, { debug: true });
+  const geometry = new JscadGeometry(jsCadGeometry);
   // todo memoize the geometry
 
   return (
