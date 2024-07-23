@@ -10,7 +10,7 @@ import { cylinder, roundedCuboid } from "@jscad/modeling/src/primitives";
 const { colorize } = colors;
 const { cube, cuboid, line, sphere, star } = primitives;
 
-export const design = (parameters: any): Geom3 | Geom3[] => {
+export const design = (parameters: any): Record<string, Geom3> => {
   // const transpCube = colorize(
   //   [1, 1, 0, 0.5],
   //   cuboid({
@@ -126,5 +126,5 @@ export const design = (parameters: any): Geom3 | Geom3[] => {
   );
 
   // return [base, barHolder];
-  return [final];
+  return { final, base };
 };
