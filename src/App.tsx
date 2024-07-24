@@ -25,7 +25,7 @@ function App() {
     Record<string, boolean>
   >({});
 
-  const geo = useMemo(() => design({ scale: 1 }), []);
+  const geo = useMemo(() => design(), []);
 
   useEffect(() => {
     setGeometriesVisibility((prev) => {

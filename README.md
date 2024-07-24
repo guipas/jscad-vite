@@ -10,7 +10,18 @@ Do you like JSCAD but prefer writing code in VSCode with TypeScript? This projec
 - modify the `src/design.ts` file with your JSCAD code
 - watch you changes appear in the browser
 
+**Features:**
 
+- Show/Hide several objects
+- Export to STL
+- You can use Copilot in VSCode to help you write JSCAD code ;-)
+
+**Roadmap:**
+- [x] show hide several objects
+- [x] export to STL
+- [ ] UI to pass parameters to the design function
+- [ ] custom color for each object
+- [ ] nested objects hierarchy
 
 **How it is built:**
 
@@ -20,3 +31,4 @@ This project relies on:
 - Typescript
 - React
 - React-three-fiber
+- TailwindCss
