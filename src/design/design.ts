@@ -5,6 +5,7 @@ import { Geom3 } from "@jscad/modeling/src/geometries/types";
 import { subtract, union } from "@jscad/modeling/src/operations/booleans";
 import { rotate, translate } from "@jscad/modeling/src/operations/transforms";
 import { cylinder, roundedCuboid } from "@jscad/modeling/src/primitives";
+import { holder } from "./holder";
 
 // const { intersect, subtract } = booleans;
 const { colorize } = colors;
@@ -125,6 +126,9 @@ export const design = (parameters: any): Record<string, Geom3> => {
     ...holeHeads
   );
 
+  // const hold = holder();
+
   // return [base, barHolder];
-  return { final, base };
+  // return { hold };
+  return holder();
 };

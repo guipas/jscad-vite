@@ -1,6 +1,6 @@
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
-import { design } from "./design";
+import { design } from "./design/design";
 import { JSCadObject } from "./JscadObject";
 import { OrbitControls } from "@react-three/drei";
 
@@ -40,10 +40,7 @@ function App() {
 
   const exportToStl = () => {
     setIsLoading(true);
-    const rawData = stl.serialize(
-      { binary: true },
-      Array.isArray(geo) ? geo[0] : geo
-    );
+    const rawData = stl.serialize({ binary: true }, geo.final);
     const blob = new Blob(rawData);
 
     const url = window.URL.createObjectURL(blob);
