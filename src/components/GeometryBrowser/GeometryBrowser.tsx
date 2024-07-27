@@ -20,7 +20,6 @@ export function GeometryBrowser({
   className,
   onClearSettings,
 }: GeometryBrowserProps) {
-  console.log("settings", geometries);
   return (
     <div
       className={`m-2 border border-gray-500 rounded text-white ${className}`}
@@ -96,11 +95,7 @@ function RecursiveItem({
   path = [],
   index = 0,
 }: RecursiveItemProps) {
-  console.log("render item", path.join("."));
   if (isGeoSetting(settings)) {
-    // const settingsPath = path.join(".");
-    // const itemSettings = _.get(settings, settingsPath);
-    // console.log("item", path.join("."), settings);
     return (
       <div className="">
         <Item

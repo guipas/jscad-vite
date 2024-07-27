@@ -19,9 +19,9 @@ Do you like JSCAD but prefer writing code in VSCode with TypeScript? This projec
 **Roadmap:**
 - [x] show hide several objects
 - [x] export to STL
+- [x] nested objects hierarchy
 - [ ] UI to pass parameters to the design function
 - [ ] custom color for each object
-- [ ] nested objects hierarchy
 
 **How it is built:**
 
@@ -32,3 +32,4 @@ This project relies on:
 - React
 - React-three-fiber
 - TailwindCss
+- Shadcn
