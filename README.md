@@ -2,6 +2,8 @@
 
 Do you like JSCAD but prefer writing code in VSCode with TypeScript? This project is for you! 
 
+![screenshot](https://github.com/guipas/jscad-vite/blob/main/public/screenshot1.png)
+
 **How to use:**
 
 - clone this repo

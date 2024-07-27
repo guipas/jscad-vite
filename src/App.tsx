@@ -52,7 +52,6 @@ function App() {
     setIsLoading(false);
   };
 
-  // console.log("settings", settings);
   return (
     <div className="min-h-dvh">
       <Canvas
@@ -71,19 +70,6 @@ function App() {
         <directionalLight position={[-100, 100, 100]} intensity={1} />
         <directionalLight position={[-100, -100, 100]} intensity={1} />
         {/* <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} /> */}
-        {/* {Object.keys(geo)
-          .sort(finalFirst)
-          .map((key, i) =>
-            geometriesVisibility[key]?.visible ? (
-              <JSCadObject
-                key={key}
-                jsCadGeometry={geo[key]}
-                color={colors[i % colors.length]}
-                // wireframe={i !== 0}
-                opacity={geometriesVisibility[key]?.transparent ? 0.5 : 1}
-              />
-            ) : null
-          )} */}
         <TreeJscad geo={geo} settings={settings} />
       </Canvas>
       <GeometryBrowser
