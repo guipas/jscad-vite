@@ -1,0 +1,135 @@
+import { Geom3 } from "@jscad/modeling/src/geometries/types";
+<<<<<<< HEAD:src/design.ts
+import { subtract } from "@jscad/modeling/src/operations/booleans";
+import { cuboid, sphere } from "@jscad/modeling/src/primitives";
+
+export const design = (): Record<string, Geom3> => {
+  const cube = cuboid({
+    size: [110, 200, 210],
+=======
+import { subtract, union } from "@jscad/modeling/src/operations/booleans";
+import { rotate, translate } from "@jscad/modeling/src/operations/transforms";
+import { cylinder, roundedCuboid } from "@jscad/modeling/src/primitives";
+import { holder } from "./holder";
+import { GeometriesTree } from "../types";
+
+// const { intersect, subtract } = booleans;
+const { colorize } = colors;
+const { cube, cuboid, line, sphere, star } = primitives;
+
+export const design = (parameters: any): GeometriesTree => {
+  // const transpCube = colorize(
+  //   [1, 1, 0, 0.5],
+  //   cuboid({
+  //     size: [110 * parameters.scale, 200, 210 + 200 * parameters.scale],
+  //   })
+  // );
+
+  const baseSize = 60;
+  const innerBarRadius = 27 / 2;
+  const thickness = 5;
+  const screwRadius = 5 / 2;
+  const screwHeadRadius = 10 / 2;
+  const screwHeadHeight = thickness / 3;
+
+  const base = cuboid({
+    size: [baseSize, baseSize, thickness],
+    // roundRadius: 2,
+    // segments: 64,
+>>>>>>> table:src/design/design.ts
+  });
+
+  const ball = sphere({ radius: 100 });
+
+  const final = subtract(cube, ball);
+
+<<<<<<< HEAD:src/design.ts
+  // return an object where each property is a JSCAD geometry you want to visualize
+  // the property named `final` is your final design
+  // and you can pass other geometry as well, like `ball` in this case, that will also be displayed
+  // this is usefull for debugging operations like subtract, as you can see the object that was subtracted
+  return { final, ball };
+=======
+  const barholderBase = translate(
+    [0, 0, (innerBarRadius + thickness) / 2],
+    cuboid({
+      size: [
+        baseSize,
+        innerBarRadius * 2 + thickness * 2,
+        innerBarRadius + thickness + 2,
+      ],
+      // roundRadius: 2,
+      // segments: 64,
+    })
+  );
+  // const barHolderReinforcement = translate(
+  //   [0, 0, (innerBarRadius + thickness) / 2 - 2],
+  //   roundedCuboid({
+  //     size: [
+  //       innerBarRadius * 2 + thickness * 2,
+  //       baseSize,
+  //       innerBarRadius + thickness,
+  //     ],
+  //     roundRadius: 2,
+  //     segments: 64,
+  //   })
+  // );
+
+  const barHolder = union(barHolderCore, barholderBase);
+
+  const margin = 1.5;
+  const screwPlacement = [
+    [
+      baseSize / 2 - screwHeadRadius - margin,
+      baseSize / 2 - screwHeadRadius - margin,
+    ],
+    [
+      baseSize / 2 - screwHeadRadius - margin,
+      -baseSize / 2 + screwHeadRadius + margin,
+    ],
+    [
+      -baseSize / 2 + screwHeadRadius + margin,
+      baseSize / 2 - screwHeadRadius - margin,
+    ],
+    [
+      -baseSize / 2 + screwHeadRadius + margin,
+      -baseSize / 2 + screwHeadRadius + margin,
+    ],
+  ];
+
+  const holes = screwPlacement.map((placement) =>
+    translate(
+      [placement[0], placement[1], thickness / 2],
+      cylinder({ radius: screwRadius, height: thickness * 10, segments: 64 })
+    )
+  );
+  const holeHeads = screwPlacement.map((placement) =>
+    translate(
+      [placement[0], placement[1], thickness / 2 - screwHeadHeight / 2 + 0.5],
+      cylinder({
+        radius: screwHeadRadius,
+        height: screwHeadHeight,
+        segments: 64,
+      })
+    )
+  );
+
+  const final = subtract(
+    union(base, subtract(barHolder, bar)),
+    ...holes,
+    ...holeHeads
+  );
+
+  const hold = holder();
+
+  // return [base, barHolder];
+  // return { hold };
+  // return holder();
+  return {
+    final,
+    others: {
+      hold,
+    },
+  };
+>>>>>>> table:src/design/design.ts
+};
