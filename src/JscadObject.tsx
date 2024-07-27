@@ -6,12 +6,14 @@ export interface JSCadObjectProps {
   jsCadGeometry: Geom3;
   color?: Color | number;
   wireframe?: boolean;
+  opacity?: number;
 }
 
 export const JSCadObject = ({
   jsCadGeometry,
   color,
   wireframe,
+  opacity,
 }: JSCadObjectProps) => {
   const geometry = new JscadGeometry(jsCadGeometry);
   // todo memoize the geometry
@@ -23,6 +25,8 @@ export const JSCadObject = ({
           color={color || 0xffff00}
           side={DoubleSide}
           wireframe={wireframe}
+          transparent
+          opacity={opacity}
         />
       </mesh>
     </>

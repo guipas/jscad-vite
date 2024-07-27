@@ -6,12 +6,13 @@ import { subtract, union } from "@jscad/modeling/src/operations/booleans";
 import { rotate, translate } from "@jscad/modeling/src/operations/transforms";
 import { cylinder, roundedCuboid } from "@jscad/modeling/src/primitives";
 import { holder } from "./holder";
+import { GeometriesTree } from "../types";
 
 // const { intersect, subtract } = booleans;
 const { colorize } = colors;
 const { cube, cuboid, line, sphere, star } = primitives;
 
-export const design = (parameters: any): Record<string, Geom3> => {
+export const design = (parameters: any): GeometriesTree => {
   // const transpCube = colorize(
   //   [1, 1, 0, 0.5],
   //   cuboid({
@@ -126,9 +127,15 @@ export const design = (parameters: any): Record<string, Geom3> => {
     ...holeHeads
   );
 
-  // const hold = holder();
+  const hold = holder();
 
   // return [base, barHolder];
   // return { hold };
-  return holder();
+  // return holder();
+  return {
+    final,
+    others: {
+      hold,
+    },
+  };
 };
